@@ -10,13 +10,25 @@ generic:
   binaries:
     urls:
       1.9.15: https://dl.dropbox.com/s/40hjzizaqi91373/minc-toolkit-1.9.15-20170529-CentOS_6.9-x86_64.tar.gz
+      1.9.16: https://dl.dropbox.com/s/u9ksy2zfqmytz3x/minc-toolkit-1.9.16-20180117-CentOS_6.10-x86_64.tar.gz
     dependencies:
       apt: >
         libgl1-mesa-dev libice6 libsm6 libx11-6 libxext6 libxi6 libxmu6
-        libgomp1 libjpeg62 octave
+        libgomp1 libjpeg62 octave libglu1-mesa libgl1-mesa-glx perl imagemagick bc ed
       yum: >
         libICE libSM libX11 libXext libXi libXmu libgomp libjpeg-turbo
         mesa-libGL-devel octave
+    env:
+      MINC_TOOLKIT: "{{ minc.install_path }}"
+      MINC_TOOLKIT_VERSION: "{{ minc.install_path }}"
+      PATH: "{{ minc.install_path }}/bin:{{ minc.install_path }}/pipeline:$PATH"
+      PERL5LIB: "{{ minc.install_path }}/perl:{{ minc.install_path }}/pipeline:$PERL5LIB"
+      LD_LIBRARY_PATH: "{{ minc.install_path }}/lib:{{ minc.install_path }}/lib/InsightToolkit:$LD_LIBRARY_PATH"
+      MNI_DATAPATH: "{{ minc.install_path }}/share"
+      MINC_FORCE_V2: "1"
+      MINC_COMPRESS: "4"
+      VOLUME_CACHE_THRESHOLD: "-1"
+      MANPATH: "{{ minc.install_path }}/man:$MANPATH"
     instructions: |
       {{ minc.install_dependencies() }}
       echo "Downloading MINC, BEASTLIB, and MODELS..."
@@ -29,6 +41,4 @@ generic:
       unzip /tmp/mni_90a.zip -d {{ minc.install_path }}/share/icbm152_model_09a
       curl {{ minc.curl_opts }} -o /tmp/mni_90c.zip http://www.bic.mni.mcgill.ca/~vfonov/icbm/2009/mni_icbm152_nlin_sym_09c_minc2.zip
       unzip /tmp/mni_90c.zip -d {{ minc.install_path }}/share/icbm152_model_09c
-      sed -i 's+MINC_TOOLKIT=/opt/minc+MINC_TOOLKIT={{ minc.install_path }}+g' {{ minc.install_path }}/minc-toolkit-config.sh
-      sed -i '$isource {{ minc.install_path }}/minc-toolkit-config.sh' $ND_ENTRYPOINT
       rm -rf /tmp/mni*
