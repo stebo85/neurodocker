@@ -13,10 +13,10 @@ generic:
     dependencies:
       apt: >
         libgl1-mesa-dev libice6 libsm6 libx11-6 libxext6 libxi6 libxmu6
-        libgomp1 libjpeg62
+        libgomp1 libjpeg62 octave
       yum: >
         libICE libSM libX11 libXext libXi libXmu libgomp libjpeg-turbo
-        mesa-libGL-devel
+        mesa-libGL-devel octave
     instructions: |
       {{ minc.install_dependencies() }}
       echo "Downloading MINC, BEASTLIB, and MODELS..."
