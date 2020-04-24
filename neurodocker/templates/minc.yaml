@@ -47,10 +47,10 @@ generic:
       dependencies:
         apt: >
           build-essential g++ bc cmake bison flex libx11-dev x11proto-core-dev libxi6 libxi-dev
-          libxmu6 libxmu-dev libxmu-headers libgl1-mesa-dev libglu1-mesa-dev libjpeg-dev
+          libxmu6 libxmu-dev libxmu-headers libgl1-mesa-dev libglu1-mesa-dev libjpeg-dev git
         yum: > 
           libX11-devel libXmu-devel libXi-devel mesa-libGL-devel mesa-libGLU-devel libjpeg-turbo-devel
-          openssl-devel bc rpm-build-libs rpm-devel redhat-lsb-core 
+          openssl-devel bc rpm-build-libs rpm-devel redhat-lsb-core git
       env:
         MINC_TOOLKIT: "{{ minc.install_path }}"
         MINC_TOOLKIT_VERSION: "{{ minc.install_path }}"
