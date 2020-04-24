@@ -14,10 +14,10 @@ generic:
     dependencies:
       apt: >
         libgl1-mesa-dev libice6 libsm6 libx11-6 libxext6 libxi6 libxmu6
-        libgomp1 libjpeg62 octave libglu1-mesa libgl1-mesa-glx perl imagemagick bc ed
+        libgomp1 libjpeg62 octave libglu1-mesa libgl1-mesa-glx perl imagemagick bc ed libc6 libstdc++6 gdebi-core
       yum: >
         libICE libSM libX11 libXext libXi libXmu libgomp libjpeg-turbo
-        mesa-libGL-devel octave
+        mesa-libGL-devel octave glibc libstdc++ ImageMagick perl
     env:
       MINC_TOOLKIT: "{{ minc.install_path }}"
       MINC_TOOLKIT_VERSION: "{{ minc.install_path }}"
@@ -42,3 +42,52 @@ generic:
       curl {{ minc.curl_opts }} -o /tmp/mni_90c.zip http://www.bic.mni.mcgill.ca/~vfonov/icbm/2009/mni_icbm152_nlin_sym_09c_minc2.zip
       unzip /tmp/mni_90c.zip -d {{ minc.install_path }}/share/icbm152_model_09c
       rm -rf /tmp/mni*
+
+  source:
+      dependencies:
+        apt: >
+          build-essential g++ bc cmake bison flex libx11-dev x11proto-core-dev libxi6 libxi-dev
+          libxmu6 libxmu-dev libxmu-headers libgl1-mesa-dev libglu1-mesa-dev libjpeg-dev
+        yum: > 
+          libX11-devel libXmu-devel libXi-devel mesa-libGL-devel mesa-libGLU-devel libjpeg-turbo-devel
+          openssl-devel bc rpm-build-libs rpm-devel redhat-lsb-core 
+      env:
+        MINC_TOOLKIT: "{{ minc.install_path }}"
+        MINC_TOOLKIT_VERSION: "{{ minc.install_path }}"
+        PATH: "{{ minc.install_path }}/bin:{{ minc.install_path }}/pipeline:$PATH"
+        PERL5LIB: "{{ minc.install_path }}/perl:{{ minc.install_path }}/pipeline:$PERL5LIB"
+        LD_LIBRARY_PATH: "{{ minc.install_path }}/lib:{{ minc.install_path }}/lib/InsightToolkit:$LD_LIBRARY_PATH"
+        MNI_DATAPATH: "{{ minc.install_path }}/share"
+        MINC_FORCE_V2: "1"
+        MINC_COMPRESS: "4"
+        VOLUME_CACHE_THRESHOLD: "-1"
+        MANPATH: "{{ minc.install_path }}/man:$MANPATH"
+      instructions:
+        git clone --recursive --branch master https://github.com/BIC-MNI/minc-toolkit-v2.git minc-toolkit-v2
+        cd minc-toolkit-v2
+        mkdir build && cd build
+        cmake .. \
+        -DCMAKE_BUILD_TYPE:STRING=Release   \
+        -DCMAKE_INSTALL_PREFIX:PATH=/opt/minc/master \
+        -DMT_BUILD_ABC:BOOL=ON   \
+        -DMT_BUILD_ANTS:BOOL=ON   \
+        -DMT_BUILD_C3D:BOOL=ON   \
+        -DMT_BUILD_ELASTIX:BOOL=ON   \
+        -DMT_BUILD_IM:BOOL=OFF   \
+        -DMT_BUILD_ITK_TOOLS:BOOL=ON   \
+        -DMT_BUILD_LITE:BOOL=OFF   \
+        -DMT_BUILD_SHARED_LIBS:BOOL=ON   \
+        -DMT_BUILD_VISUAL_TOOLS:BOOL=ON   \
+        -DMT_USE_OPENMP:BOOL=ON   \
+        -DUSE_SYSTEM_FFTW3D:BOOL=OFF   \
+        -DUSE_SYSTEM_FFTW3F:BOOL=OFF   \
+        -DUSE_SYSTEM_GLUT:BOOL=OFF   \
+        -DUSE_SYSTEM_GSL:BOOL=OFF   \
+        -DUSE_SYSTEM_HDF5:BOOL=OFF   \
+        -DUSE_SYSTEM_ITK:BOOL=OFF   \
+        -DUSE_SYSTEM_NETCDF:BOOL=OFF   \
+        -DUSE_SYSTEM_NIFTI:BOOL=OFF   \
+        -DUSE_SYSTEM_PCRE:BOOL=OFF   \
+        -DUSE_SYSTEM_ZLIB:BOOL=OFF 
+
+        make && make install
