@@ -68,7 +68,7 @@ generic:
         mkdir build && cd build
         cmake .. \
         -DCMAKE_BUILD_TYPE:STRING=Release   \
-        -DCMAKE_INSTALL_PREFIX:PATH=/opt/minc/master \
+        -DCMAKE_INSTALL_PREFIX:PATH={{ minc.install_path }} \
         -DMT_BUILD_ABC:BOOL=ON   \
         -DMT_BUILD_ANTS:BOOL=ON   \
         -DMT_BUILD_C3D:BOOL=ON   \
