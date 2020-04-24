@@ -63,6 +63,7 @@ generic:
         VOLUME_CACHE_THRESHOLD: "-1"
         MANPATH: "{{ minc.install_path }}/man:$MANPATH"
       instructions:
+        {{ minc.install_dependencies() }}
         git clone --recursive --branch master https://github.com/BIC-MNI/minc-toolkit-v2.git minc-toolkit-v2
         cd minc-toolkit-v2
         mkdir build && cd build
