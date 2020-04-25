@@ -86,13 +86,14 @@ generic:
         rm -rf src
 
         git clone --recursive https://github.com/BIC-MNI/minc-toolkit-v2.git minc-toolkit-v2
+        
+        cd minc-toolkit-v2
 
         {% if minc.version != "master" and minc.version != "latest" -%}
         git fetch --tags
         git checkout release-{{ minc.version }}
         {% endif -%}
-
-        cd minc-toolkit-v2
+        
         mkdir build && cd build
         cmake .. \
         -DCMAKE_BUILD_TYPE:STRING=Release   \
