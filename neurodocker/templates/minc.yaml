@@ -38,7 +38,7 @@ generic:
       
       curl {{ minc.curl_opts }} {{ minc.binaries_url }} \
       | rpm2cpio \
-      | cpio -imdv -D /
+      | cpio -imdv /
 
       ln -s /opt/minc/{{ minc.version }} {{ minc.install_path }} 
 
