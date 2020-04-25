@@ -36,6 +36,8 @@ generic:
       {{ minc.install_dependencies() }}
       echo "Downloading MINC, BEASTLIB, and MODELS..."
       
+      cd /
+
       curl {{ minc.curl_opts }} {{ minc.binaries_url }} \
       | rpm2cpio \
       | cpio -imdv /
