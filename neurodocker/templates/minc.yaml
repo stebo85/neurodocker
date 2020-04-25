@@ -6,18 +6,21 @@
 # Dockerfile:
 # https://github.com/BIC-MNI/build_packages/blob/master/build_centos_6.9_x64/Dockerfile
 
+# Binaries are unpacked from the Centos 6 or 7 package: https://packages.bic.mni.mcgill.ca/minc-toolkit/
+
 generic:
   binaries:
     urls:
-      1.9.15: https://dl.dropbox.com/s/40hjzizaqi91373/minc-toolkit-1.9.15-20170529-CentOS_6.9-x86_64.tar.gz
-      1.9.16: https://dl.dropbox.com/s/u9ksy2zfqmytz3x/minc-toolkit-1.9.16-20180117-CentOS_6.10-x86_64.tar.gz
+      1.9.15: https://packages.bic.mni.mcgill.ca/minc-toolkit/RPM/minc-toolkit-1.9.15-20170529-CentOS_7.3.1611-x86_64.rpm
+      1.9.16: https://packages.bic.mni.mcgill.ca/minc-toolkit/RPM/minc-toolkit-1.9.16-20180117-CentOS_7.3.1611-x86_64.rpm
+      1.9.17: https://packages.bic.mni.mcgill.ca/minc-toolkit/RPM/minc-toolkit-1.9.17-20190313-CentOS_6.10-x86_64.rpm
     dependencies:
       apt: >
         libgl1-mesa-dev libice6 libsm6 libx11-6 libxext6 libxi6 libxmu6
-        libgomp1 libjpeg62 octave libglu1-mesa libgl1-mesa-glx perl imagemagick bc ed libc6 libstdc++6 gdebi-core
+        libgomp1 libjpeg62 octave libglu1-mesa libgl1-mesa-glx perl imagemagick bc ed libc6 libstdc++6 gdebi-core rpm2cpio cpio
       yum: >
         libICE libSM libX11 libXext libXi libXmu libgomp libjpeg-turbo
-        mesa-libGL-devel octave glibc libstdc++ ImageMagick perl
+        mesa-libGL-devel octave glibc libstdc++ ImageMagick perl rpm2cpio cpio
     env:
       MINC_TOOLKIT: "{{ minc.install_path }}"
       MINC_TOOLKIT_VERSION: "{{ minc.install_path }}"
@@ -32,9 +35,16 @@ generic:
     instructions: |
       {{ minc.install_dependencies() }}
       echo "Downloading MINC, BEASTLIB, and MODELS..."
-      mkdir -p {{ minc.install_path }}
+      
+      curl {{ minc.curl_opts }} {{ minc.binaries_url }} \
+      | rpm2cpio \
+      | cpio -imdv -D /
+
+      ln -s /opt/minc/{{ minc.version }} {{ minc.install_path }} 
+
       curl {{ minc.curl_opts }} {{ minc.binaries_url }} \
       | tar -xz -C {{ minc.install_path }} --strip-components 1
+      
       curl {{ minc.curl_opts }} http://packages.bic.mni.mcgill.ca/tgz/beast-library-1.1.tar.gz \
       | tar -xz -C {{ minc.install_path }}/share
       curl {{ minc.curl_opts }} -o /tmp/mni_90a.zip http://www.bic.mni.mcgill.ca/~vfonov/icbm/2009/mni_icbm152_nlin_sym_09a_minc2.zip
@@ -64,7 +74,13 @@ generic:
         MANPATH: "{{ minc.install_path }}/man:$MANPATH"
       instructions: |
         {{ minc.install_dependencies() }}
-        git clone --recursive --branch master https://github.com/BIC-MNI/minc-toolkit-v2.git minc-toolkit-v2
+        git clone --recursive https://github.com/BIC-MNI/minc-toolkit-v2.git minc-toolkit-v2
+
+        {% if minc.version != "master" and minc.version != "latest" -%}
+        git fetch --tags
+        git checkout release-{{ minc.version }}
+        {% endif -%}
+
         cd minc-toolkit-v2
         mkdir build && cd build
         cmake .. \
@@ -91,4 +107,4 @@ generic:
         -DUSE_SYSTEM_PCRE:BOOL=OFF   \
         -DUSE_SYSTEM_ZLIB:BOOL=OFF 
 
-        make && make install
+        make -j 2 && make install
