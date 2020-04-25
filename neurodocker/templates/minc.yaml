@@ -38,12 +38,20 @@ generic:
       
       cd /
 
+      ls
+
       curl {{ minc.curl_opts }} {{ minc.binaries_url }} \
       | rpm2cpio \
-      | cpio -imdv /
+      | cpio -imdv
 
-      mv /opt/minc/{{ minc.version }} {{ minc.install_path }} 
+      ls
+
+      ls /opt
+
+      ln -s /opt/minc/{{ minc.version }} {{ minc.install_path }} 
       
+      ls -la /opt
+
       curl {{ minc.curl_opts }} http://packages.bic.mni.mcgill.ca/tgz/beast-library-1.1.tar.gz \
       | tar -xz -C {{ minc.install_path }}/share
       curl {{ minc.curl_opts }} -o /tmp/mni_90a.zip http://www.bic.mni.mcgill.ca/~vfonov/icbm/2009/mni_icbm152_nlin_sym_09a_minc2.zip
