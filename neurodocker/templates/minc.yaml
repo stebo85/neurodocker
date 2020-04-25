@@ -73,6 +73,18 @@ generic:
         MANPATH: "{{ minc.install_path }}/man:$MANPATH"
       instructions: |
         {{ minc.install_dependencies() }}
+
+        mkdir src && \
+        cd src && \
+        curl -L --output cmake-3.14.5.tar.gz https://github.com/Kitware/CMake/releases/download/v3.14.5/cmake-3.14.5.tar.gz  && \
+        tar zxf cmake-3.14.5.tar.gz && \
+        cd cmake-3.14.5 && \
+        ./configure --prefix=/usr --no-qt-gui && \
+        make && \
+        make install && \
+        cd ../../ && \
+        rm -rf src
+
         git clone --recursive https://github.com/BIC-MNI/minc-toolkit-v2.git minc-toolkit-v2
 
         {% if minc.version != "master" and minc.version != "latest" -%}
