@@ -119,4 +119,4 @@ generic:
         -DUSE_SYSTEM_PCRE:BOOL=OFF   \
         -DUSE_SYSTEM_ZLIB:BOOL=OFF 
 
-        make -j 2 && make install
+        make -j 12 && make install
