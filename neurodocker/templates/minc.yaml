@@ -41,9 +41,6 @@ generic:
       | cpio -imdv /
 
       ln -s /opt/minc/{{ minc.version }} {{ minc.install_path }} 
-
-      curl {{ minc.curl_opts }} {{ minc.binaries_url }} \
-      | tar -xz -C {{ minc.install_path }} --strip-components 1
       
       curl {{ minc.curl_opts }} http://packages.bic.mni.mcgill.ca/tgz/beast-library-1.1.tar.gz \
       | tar -xz -C {{ minc.install_path }}/share
