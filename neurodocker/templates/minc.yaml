@@ -6,6 +6,7 @@
 # Dockerfile:
 # https://github.com/BIC-MNI/build_packages/blob/master/build_centos_6.9_x64/Dockerfile
 
+
 # Binaries are unpacked from the Centos 6 or 7 package: https://packages.bic.mni.mcgill.ca/minc-toolkit/ - problem: guis not working 
 # 1.9.15: https://packages.bic.mni.mcgill.ca/minc-toolkit/RPM/minc-toolkit-1.9.15-20170529-CentOS_7.3.1611-x86_64.rpm
 # 1.9.16: https://packages.bic.mni.mcgill.ca/minc-toolkit/RPM/minc-toolkit-1.9.16-20180117-CentOS_7.3.1611-x86_64.rpm
@@ -25,6 +26,12 @@
 # master - centos:6, build fails with download errors
 # 1.9.17 - centos:6, build fails with download errors
 
+
+# Binaries are unpacked from the Debian 9.8 package: https://packages.bic.mni.mcgill.ca/minc-toolkit/
+ 
+
+
+
 generic:
   binaries:
     urls:
@@ -39,7 +46,7 @@ generic:
     env:
       MINC_TOOLKIT: "{{ minc.install_path }}"
       MINC_TOOLKIT_VERSION: "{{ minc.install_path }}"
-      PATH: "{{ minc.install_path }}/bin:{{ minc.install_path }}/pipeline:$PATH"
+      PATH: "{{ minc.install_path }}/bin:{{ minc.install_path }}/volgenmodel-nipype/extra-scripts:{{ minc.install_path }}/pipeline:$PATH"
       PERL5LIB: "{{ minc.install_path }}/perl:{{ minc.install_path }}/pipeline:$PERL5LIB"
       LD_LIBRARY_PATH: "{{ minc.install_path }}/lib:{{ minc.install_path }}/lib/InsightToolkit:$LD_LIBRARY_PATH"
       MNI_DATAPATH: "{{ minc.install_path }}/share"
@@ -57,6 +64,8 @@ generic:
       | ar vx
       
       tar -xz -C {{ minc.install_path }} --strip-components 1 data.tar.gz
+
+      git clone https://github.com/CAIsr/volgenmodel-nipype.git {{ minc.install_path }}
       
       curl {{ minc.curl_opts }} http://packages.bic.mni.mcgill.ca/tgz/beast-library-1.1.tar.gz \
       | tar -xz -C {{ minc.install_path }}/share
