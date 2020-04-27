@@ -68,7 +68,7 @@ generic:
 
       rm minc.deb
 
-      git clone https://github.com/CAIsr/volgenmodel-nipype.git {{ minc.install_path }}
+      git clone https://github.com/CAIsr/volgenmodel-nipype.git {{ minc.install_path }}/volgenmodel-nipype/
       
       curl {{ minc.curl_opts }} http://packages.bic.mni.mcgill.ca/tgz/beast-library-1.1.tar.gz \
       | tar -xz -C {{ minc.install_path }}/share
