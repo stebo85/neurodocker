@@ -28,7 +28,9 @@
 
 
 # Binaries are unpacked from the Debian 9.8 package: https://packages.bic.mni.mcgill.ca/minc-toolkit/
-# 1.9.17 - debian:stretch,  
+# 1.9.17 - debian:stretch (9), ar unpacking leads to guis not working
+# 1.9.17 - debian:stretch (9), gdebi unpacking leads to ...
+# 1.9.17 - debian:Jessie (8), ar unpacking
 
 
 
@@ -62,7 +64,7 @@ generic:
 
       curl {{ minc.binaries_url }} -o minc.deb
       
-      gdebi minc.deb
+      gdebi minc.deb --n
 
       # ar p minc.deb data.tar.gz | tar zx 
 
