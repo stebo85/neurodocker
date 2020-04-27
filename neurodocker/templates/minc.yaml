@@ -60,11 +60,14 @@ generic:
       
       cd /
 
-      curl {{ minc.binaries_url }} -o minc.deb \
+      curl {{ minc.binaries_url }} -o minc.deb
       
       ar vx minc.deb
+      rm minc.deb
       
-      tar -xz -C {{ minc.install_path }} --strip-components 1 data.tar.gz
+      tar -xzvf data.tar.gz -C {{ minc.install_path }} --strip-components 1 
+
+      rm data.tar.gz
 
       git clone https://github.com/CAIsr/volgenmodel-nipype.git {{ minc.install_path }}
       
