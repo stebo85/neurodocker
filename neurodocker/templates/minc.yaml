@@ -1,4 +1,4 @@
-# Instructions to install MINC toolkit v2.
+# Instructions to install MINC toolkit v2. http://bic-mni.github.io/#on-debianubuntu
 #
 # Repository: https://github.com/BIC-MNI/minc-toolkit-v2
 #
@@ -62,7 +62,9 @@ generic:
 
       curl {{ minc.binaries_url }} -o minc.deb
       
-      ar p minc.deb data.tar.gz | tar zx 
+      gdebi minc.deb
+
+      # ar p minc.deb data.tar.gz | tar zx 
 
       ln -s /opt/minc/{{ minc.version }} {{ minc.install_path }} 
 
