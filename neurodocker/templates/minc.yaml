@@ -29,7 +29,8 @@
 
 # Binaries are unpacked from the Debian 9.8 package: https://packages.bic.mni.mcgill.ca/minc-toolkit/
 # 1.9.17 - debian:stretch (9), ar unpacking leads to guis not working
-# 1.9.17 - debian:stretch (9), gdebi unpacking leads to ...
+# 1.9.17 - debian:stretch (9), gdebi unpacking leads to guis not working
+# 1.9.17 - debian:Jessie (8), gdebi unpacking
 # 1.9.17 - debian:Jessie (8), ar unpacking
 
 
@@ -37,7 +38,7 @@
 generic:
   binaries:
     urls:
-      1.9.17: https://packages.bic.mni.mcgill.ca/minc-toolkit/Debian/minc-toolkit-1.9.17-20190313-Debian_9.8-x86_64.deb
+      1.9.17: https://packages.bic.mni.mcgill.ca/minc-toolkit/Debian/minc-toolkit-1.9.17-20190313-Debian_8.11-x86_64.deb
     dependencies:
       apt: >
         libgl1-mesa-dev libice6 libsm6 libx11-6 libxext6 libxi6 libxmu6
