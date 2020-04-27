@@ -28,7 +28,7 @@
 
 
 # Binaries are unpacked from the Debian 9.8 package: https://packages.bic.mni.mcgill.ca/minc-toolkit/
- 
+# 1.9.17 - debian:stretch,  
 
 
 
@@ -60,8 +60,9 @@ generic:
       
       cd /
 
-      curl {{ minc.curl_opts }} {{ minc.binaries_url }} \
-      | ar vx
+      curl {{ minc.binaries_url }} -o minc.deb \
+      
+      ar vx minc.deb
       
       tar -xz -C {{ minc.install_path }} --strip-components 1 data.tar.gz
 
