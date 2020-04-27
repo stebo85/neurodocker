@@ -67,7 +67,6 @@ generic:
       ln -s /opt/minc/{{ minc.version }} {{ minc.install_path }} 
 
       rm minc.deb
-      rm data.tar.gz
 
       git clone https://github.com/CAIsr/volgenmodel-nipype.git {{ minc.install_path }}
       
