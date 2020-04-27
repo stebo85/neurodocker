@@ -39,10 +39,10 @@ generic:
     dependencies:
       apt: >
         libgl1-mesa-dev libice6 libsm6 libx11-6 libxext6 libxi6 libxmu6
-        libgomp1 libjpeg62 octave libglu1-mesa libgl1-mesa-glx perl imagemagick bc ed libc6 libstdc++6 gdebi-core binutils
+        libgomp1 libjpeg62 octave libglu1-mesa libgl1-mesa-glx perl imagemagick bc ed libc6 libstdc++6 gdebi-core binutils git
       yum: >
         octave libICE libSM libX11 libXext libXi libXmu libgomp libjpeg-turbo
-        mesa-libGL-devel epel-release glibc libstdc++ ImageMagick perl
+        mesa-libGL-devel epel-release glibc libstdc++ ImageMagick perl binutils git
     env:
       MINC_TOOLKIT: "{{ minc.install_path }}"
       MINC_TOOLKIT_VERSION: "{{ minc.install_path }}"
