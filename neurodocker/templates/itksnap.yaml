@@ -2,15 +2,16 @@
 #
 # Repository: http://www.itksnap.org/pmwiki/pmwiki.php?n=SourceCode.SourceCode
 # Website: http://www.itksnap.org/pmwiki/pmwiki.php?n=Downloads.SNAP3
-
+# package version for apt and yum identified aiming for centos6,7,8, debian 8,9,10 and ubuntu up to 20.04 using https://pkgs.org
+# due to libpng12-0 this recipe only works for centos6,7,8 and debian 8(jessie) and ubuntu 14.04 16.04 
 
 generic:
   binaries:
     urls:
       "3.8.0": https://sourceforge.net/projects/itk-snap/files/itk-snap/3.8.0/itksnap-3.8.0-20190612-Linux-x86_64-qt4.tar.gz/download
     dependencies:
-      apt: libglu1-mesa libsm6 libxt6 libfreetype6 libxrender1
-      yum: mesa-libGLU
+      apt: libglu1-mesa libsm6 libxt6 libfreetype6 libxrender1 libfontconfig1 libpng12-0
+      yum: mesa-libGLU libSM libXt freetype libXrender fontconfig glib2 libpng libglib2.0-0 
     env:
       PATH: "{{ itksnap.install_path }}/bin:$PATH"
       LD_LIBRARY_PATH: "{{ itksnap.install_path }}/lib:$LD_LIBRARY_PATH"
@@ -24,8 +25,8 @@ generic:
 
   source:
     dependencies:
-      apt: cmake g++ gcc git make libglu1-mesa libsm6 libxt6 libfreetype6 libxrender1
-      yum: cmake gcc-c++ git make mesa-libGLU 
+      apt: cmake g++ gcc git make libglu1-mesa libsm6 libxt6 libfreetype6 libxrender1 libfontconfig1 libglib2.0-0 libpng12-0
+      yum: cmake gcc-c++ git make mesa-libGLU libSM libXt freetype libXrender fontconfig glib2 libglib2.0-0
     env:
       PATH: "{{ itksnap.install_path }}/bin:$PATH"
     instructions: |
