@@ -14,6 +14,7 @@ generic:
     env:
       PATH: "{{ itksnap.install_path }}:$PATH"
     instructions: |
+      {{ itksnap.install_dependencies() }}
       echo "Downloading itksnap ..."
       mkdir -p {{ itksnap.install_path }}
       curl {{ itksnap.curl_opts }} {{ itksnap.binaries_url }} \
