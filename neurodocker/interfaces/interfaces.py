@@ -139,7 +139,7 @@ class ITKsnap(_BaseInterface):
     """Create instance of itksnap object."""
 
     _name = 'itksnap'
-    _pretty_name = 'itksnap'
+    _pretty_name = 'ITKsnap'
 
     def __init__(self, *args, **kwargs):
         super().__init__(self._name, *args, **kwargs)
