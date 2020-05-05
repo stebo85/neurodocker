@@ -5,7 +5,6 @@
 # Website: https://surfer.nmr.mgh.harvard.edu/
 # Documentation: https://surfer.nmr.mgh.harvard.edu/fswiki
 
-
 generic:
   binaries:
     urls:
@@ -15,7 +14,7 @@ generic:
       # See https://github.com/freesurfer/freesurfer/issues/70
       "6.0.0-min": https://dl.dropbox.com/s/nnzcfttc41qvt31/recon-all-freesurfer6-3.min.tgz
     dependencies:
-      apt: bc libgomp1 libxmu6 libxt6 tcsh perl
+      apt: bc libgomp1 libxmu6 libxt6 tcsh perl libqt5widgets5
       yum: bc libgomp libXmu libXt tcsh perl qt-x11 qt5-qtdeclarative
     env:
       FREESURFER_HOME: "{{ freesurfer.install_path }}"
