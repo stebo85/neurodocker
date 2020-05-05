@@ -24,8 +24,8 @@ generic:
 
   source:
     dependencies:
-      apt: cmake g++ gcc git make libglu1-mesa libsm6 libxt6
-      yum: cmake gcc-c++ git make mesa-libGLU libSM6 libxt6
+      apt: cmake g++ gcc git make libglu1-mesa libsm6 libxt6 libfreetype6
+      yum: cmake gcc-c++ git make mesa-libGLU libSM6 libxt6 libfreetype6
     env:
       PATH: "{{ itksnap.install_path }}/bin:$PATH"
     instructions: |
