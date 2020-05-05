@@ -8,13 +8,10 @@ generic:
   binaries:
     urls:
       "3.8.0": https://sourceforge.net/projects/itk-snap/files/itk-snap/3.8.0/itksnap-3.8.0-20190612-Linux-x86_64-qt4.tar.gz/download
-    dependencies:
-      apt: libglu1-mesa
-      yum: mesa-libGLU
     env:
       PATH: "{{ itksnap.install_path }}/bin:$PATH"
+      LD_LIBRARY_PATH: "{{ itksnap.install_path }}/lib:$LD_LIBRARY_PATH"
     instructions: |
-      {{ itksnap.install_dependencies() }}
       echo "Downloading itksnap ..."
       mkdir -p {{ itksnap.install_path }}
       curl {{ itksnap.curl_opts }} {{ itksnap.binaries_url }} \
