@@ -8,6 +8,9 @@ generic:
   binaries:
     urls:
       "3.8.0": https://sourceforge.net/projects/itk-snap/files/itk-snap/3.8.0/itksnap-3.8.0-20190612-Linux-x86_64-qt4.tar.gz/download
+    dependencies:
+      apt: libglu1-mesa
+      yum: mesa-libGLU
     env:
       PATH: "{{ itksnap.install_path }}:$PATH"
     instructions: |
@@ -18,8 +21,8 @@ generic:
 
   source:
     dependencies:
-      apt: cmake g++ gcc git make zlib1g-dev
-      yum: cmake gcc-c++ git make zlib-devel
+      apt: cmake g++ gcc git make libglu1-mesa
+      yum: cmake gcc-c++ git make mesa-libGLU
     env:
       PATH: "{{ itksnap.install_path }}/bin:$PATH"
     instructions: |
