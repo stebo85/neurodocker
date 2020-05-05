@@ -12,7 +12,7 @@ generic:
       apt: libglu1-mesa
       yum: mesa-libGLU
     env:
-      PATH: "{{ itksnap.install_path }}:$PATH"
+      PATH: "{{ itksnap.install_path }}/bin:$PATH"
     instructions: |
       {{ itksnap.install_dependencies() }}
       echo "Downloading itksnap ..."
