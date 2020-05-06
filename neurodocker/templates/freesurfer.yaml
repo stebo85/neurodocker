@@ -21,10 +21,11 @@ generic:
       # tested in:
       # Centos6: QT error
       # Ubuntu 16.04: version `Qt_5' not found (required by freeview)
-      # Ubuntu 18.04: 
+      # Ubuntu 18.04: could not find or load the Qt platform plugin "xcb"
+      # Ubuntu 20.04: 
     dependencies:
       apt: bc libgomp1 libxmu6 libxt6 tcsh perl libqt5widgets5 libqt5x11extras5 libglu1-mesa qt5-default libqt4-scripttools libqt4-opengl libxss1 libxft2 libjpeg62 libegl1-mesa libqt5dbus5
-      yum: bc libgomp libXmu libXt tcsh perl qt-x11 qt5-qtdeclarative qt5-qtbase-gui qt5-qtx11extras mesa-libGLU libXScrnSaver libXft libjpeg-turbo mesa-libEGL
+      yum: epel-release bc libgomp libXmu libXt tcsh perl qt-x11 qt5-qtdeclarative qt5-qtbase-gui qt5-qtx11extras mesa-libGLU libXScrnSaver libXft libjpeg-turbo mesa-libEGL
     env:
       FREESURFER_HOME: "{{ freesurfer.install_path }}"
       PATH: "{{ freesurfer.install_path }}/bin:$PATH"
