@@ -15,16 +15,16 @@ generic:
       "6.0.1": ftp://surfer.nmr.mgh.harvard.edu/pub/dist/freesurfer/6.0.1/freesurfer-Linux-centos6_x86_64-stable-pub-v6.0.1.tar.gz
       # 6.0.1 binary build tested in:
       # Ubuntu 16.04: 
-      # Centos6: 
       # Ubuntu 18.04: 
+      # Centos6: 
       "7.0.0": ftp://surfer.nmr.mgh.harvard.edu/pub/dist/freesurfer/7.0.0/freesurfer-linux-centos6_x86_64-7.0.0.tar.gz
       # tested in:
       # Centos6: QT error
       # Ubuntu 16.04: version `Qt_5' not found (required by freeview)
       # Ubuntu 18.04: 
     dependencies:
-      apt: bc libgomp1 libxmu6 libxt6 tcsh perl libqt5widgets5 libqt5x11extras5 libglu1-mesa qt5-default libqt4-scripttools libqt4-opengl libxss1 libxft2 libjpeg62
-      yum: bc libgomp libXmu libXt tcsh perl qt-x11 qt5-qtdeclarative qt5-qtbase-gui qt5-qtx11extras mesa-libGLU libXScrnSaver libXft libjpeg-turbo
+      apt: bc libgomp1 libxmu6 libxt6 tcsh perl libqt5widgets5 libqt5x11extras5 libglu1-mesa qt5-default libqt4-scripttools libqt4-opengl libxss1 libxft2 libjpeg62 libegl1-mesa
+      yum: bc libgomp libXmu libXt tcsh perl qt-x11 qt5-qtdeclarative qt5-qtbase-gui qt5-qtx11extras mesa-libGLU libXScrnSaver libXft libjpeg-turbo mesa-libEGL
     env:
       FREESURFER_HOME: "{{ freesurfer.install_path }}"
       PATH: "{{ freesurfer.install_path }}/bin:$PATH"
