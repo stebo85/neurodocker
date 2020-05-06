@@ -2,8 +2,15 @@
 #
 # Repository: http://www.itksnap.org/pmwiki/pmwiki.php?n=SourceCode.SourceCode
 # Website: http://www.itksnap.org/pmwiki/pmwiki.php?n=Downloads.SNAP3
+
 # package version for apt and yum identified aiming for centos6,7,8, debian 8,9,10 and ubuntu up to 20.04 using https://pkgs.org
 # due to libpng12-0 this recipe only works for centos6,7,8 and debian 8(jessie) and ubuntu 14.04 16.04 
+
+# 3.8.0 binary build tested in:
+  # Ubuntu 16.04: working
+  
+# source build tested in:
+# 
 
 generic:
   binaries:
