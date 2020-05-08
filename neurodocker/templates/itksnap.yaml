@@ -40,14 +40,14 @@ generic:
       {{ itksnap.install_dependencies() }}
       mkdir -p /tmp/itksnap/build
       git clone git://git.code.sf.net/p/itk-snap/src /tmp/itksnap/source
-      {% if itksnap.version != "master" and itksnap.version != "latest" -%}
-      cd /tmp/itksnap/source
-      git fetch --tags
-      git checkout {{ itksnap.version }}
-      {% endif -%}
-      cd /tmp/itksnap/build
-      cmake {{ itksnap.cmake_opts|default("-DBUILD_SHARED_LIBS=ON") }} /tmp/itksnap/source
-      make {{ itksnap.make_opts|default("-j1") }}
-      mkdir -p {{ itksnap.install_path }}
-      mv bin lib {{ itksnap.install_path }}/
-      rm -rf /tmp/itksnap
+      # {% if itksnap.version != "master" and itksnap.version != "latest" -%}
+      # cd /tmp/itksnap/source
+      # git fetch --tags
+      # git checkout {{ itksnap.version }}
+      # {% endif -%}
+      # cd /tmp/itksnap/build
+      # cmake {{ itksnap.cmake_opts|default("-DBUILD_SHARED_LIBS=ON") }} /tmp/itksnap/source
+      # make {{ itksnap.make_opts|default("-j1") }}
+      # mkdir -p {{ itksnap.install_path }}
+      # mv bin lib {{ itksnap.install_path }}/
+      # rm -rf /tmp/itksnap

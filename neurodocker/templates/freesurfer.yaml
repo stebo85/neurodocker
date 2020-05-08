@@ -13,16 +13,9 @@ generic:
       # See https://github.com/freesurfer/freesurfer/issues/70
       "6.0.0": ftp://surfer.nmr.mgh.harvard.edu/pub/dist/freesurfer/6.0.0/freesurfer-Linux-centos6_x86_64-stable-pub-v6.0.0.tar.gz
       "6.0.1": ftp://surfer.nmr.mgh.harvard.edu/pub/dist/freesurfer/6.0.1/freesurfer-Linux-centos6_x86_64-stable-pub-v6.0.1.tar.gz
-      # 6.0.1 binary build tested in:
-      # Ubuntu 16.04: working? test on cvl
-      # Ubuntu 18.04: 
-      # Centos6: 
+      # Ubuntu 16.04: working
       "7.0.0": ftp://surfer.nmr.mgh.harvard.edu/pub/dist/freesurfer/7.0.0/freesurfer-linux-centos6_x86_64-7.0.0.tar.gz
-      # tested in:
-      # Centos6: QT error
-      # Ubuntu 16.04: version `Qt_5' not found (required by freeview)
-      # Ubuntu 18.04: could not find or load the Qt platform plugin "xcb"
-      # Ubuntu 20.04: 
+      # Centos 6: working
     dependencies:
       apt: bc libgomp1 libxmu6 libxt6 tcsh perl libqt5widgets5 libqt5x11extras5 libglu1-mesa qt5-default libqt4-scripttools libqt4-opengl libxss1 libxft2 libjpeg62 libegl1-mesa libqt5dbus5
       yum: epel-release bc libgomp libXmu libXt tcsh perl qt-x11 qt5-qtdeclarative qt5-qtbase-gui qt5-qtx11extras mesa-libGLU libXScrnSaver libXft libjpeg-turbo mesa-libEGL

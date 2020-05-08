@@ -68,7 +68,7 @@ Note: it is not yet possible to minimize Docker containers using the _Neurodocke
 |                             | install_path     | Installation path. Default `/opt/dcm2niix-{version}`.                                                                                               |
 |                             | cmake_opts       | If `method=source`, options for `cmake`.                                                                                                            |
 |                             | make_opts        | If `method=source`, options for `make`.                                                                                                             |
-| **FreeSurfer**              | version\*        | 6.0.1, 6.0.0, 6.0.0-min                                                                                                                                           |
+| **FreeSurfer**              | version\*        | 7.0.0, 6.0.1, 6.0.0, 6.0.0-min                                                                                                                                           |
 |                             | method           | binaries (default)                                                                                                                                  |
 |                             | install_path     | Installation path. Default `/opt/freesurfer-{version}`.                                                                                             |
 |                             | exclude_paths    | Sequence of space-separated path(s) to exclude when inflating the tarball.                                                                          |
