@@ -29,25 +29,3 @@ generic:
       mkdir -p {{ itksnap.install_path }}
       curl {{ itksnap.curl_opts }} {{ itksnap.binaries_url }} \
       | tar -xz -C {{ itksnap.install_path }} --strip-components 1
-
-  source:
-    dependencies:
-      apt: cmake g++ gcc git make libglu1-mesa libsm6 libxt6 libfreetype6 libxrender1 libfontconfig1 libpng12-0 libglib2.0-0 libcurl3
-      yum: cmake gcc-c++ git make mesa-libGLU libSM libXt freetype libXrender fontconfig glib2 libpng libglib2.0-0 libcurl
-    env:
-      PATH: "{{ itksnap.install_path }}/bin:$PATH"
-    instructions: |
-      {{ itksnap.install_dependencies() }}
-      mkdir -p /tmp/itksnap/build
-      git clone git://git.code.sf.net/p/itk-snap/src /tmp/itksnap/source
-      # {% if itksnap.version != "master" and itksnap.version != "latest" -%}
-      # cd /tmp/itksnap/source
-      # git fetch --tags
-      # git checkout {{ itksnap.version }}
-      # {% endif -%}
-      # cd /tmp/itksnap/build
-      # cmake {{ itksnap.cmake_opts|default("-DBUILD_SHARED_LIBS=ON") }} /tmp/itksnap/source
-      # make {{ itksnap.make_opts|default("-j1") }}
-      # mkdir -p {{ itksnap.install_path }}
-      # mv bin lib {{ itksnap.install_path }}/
-      # rm -rf /tmp/itksnap
