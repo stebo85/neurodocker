@@ -22,9 +22,9 @@ generic:
 
   source:
     dependencies:
-      apt: g++ gcc git libeigen3-dev make python python-numpy zlib1g-dev mesa-common-dev qt5-default libqt5svg5-dev wget libqt5opengl5-dev libqt5opengl5 libqt5gui5 libqt5core5a
+      apt: g++ gcc git libeigen3-dev make python python-numpy zlib1g-dev mesa-common-dev libglu1-mesa qt5-default libqt5svg5-dev wget libqt5opengl5-dev libqt5opengl5 libqt5gui5 libqt5core5a libtiff5-dev libtiff5 libfftw3-dev libpng12-dev
       # tested in Ubuntu 16.04
-      yum: eigen3-devel gcc-c++ git make numpy python zlib-devel
+      yum: eigen3-devel gcc-c++ git make numpy python zlib-devel fftw-devel libtiff-devel qt5-qtbase qt5-qtbase-devel qt5-qtsvg-devel mesa-libGLU libpng-devel
     env:
       PATH: "{{ mrtrix3.install_path }}/bin:$PATH"
     instructions: |
@@ -35,6 +35,6 @@ generic:
       {% if mrtrix3.version != "master" and mrtrix3.version != "latest" -%}
       git checkout {{ mrtrix3.version }}
       {% endif -%}
-      # ./configure
-      # echo "Compiling MRtrix3 ..."
-      # ./build
+      ./configure
+      echo "Compiling MRtrix3 ..."
+      ./build
