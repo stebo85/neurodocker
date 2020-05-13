@@ -22,7 +22,7 @@ generic:
 
   source:
     dependencies:
-      apt: g++ gcc git libeigen3-dev make python python-numpy zlib1g-dev mesa-common-dev qt5-default libqt5svg5-dev
+      apt: g++ gcc git libeigen3-dev make python python-numpy zlib1g-dev mesa-common-dev qt5-default libqt5svg5-dev wget
       # tested in Ubuntu 16.04
       yum: eigen3-devel gcc-c++ git make numpy python zlib-devel
     env:
@@ -40,4 +40,4 @@ generic:
       {% endif -%}
       ./configure
       echo "Compiling MRtrix3 ..."
-      # ./build
+      ./build
