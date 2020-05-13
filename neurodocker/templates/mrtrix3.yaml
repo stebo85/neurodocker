@@ -22,7 +22,7 @@ generic:
 
   source:
     dependencies:
-      apt: g++ gcc git libeigen3-dev make python python-numpy zlib1g-dev
+      apt: g++ gcc git libeigen3-dev make python python-numpy zlib1g-dev mesa-common-dev qt5-default
       yum: eigen3-devel gcc-c++ git make numpy python zlib-devel
     env:
       PATH: "{{ mrtrix3.install_path }}/bin:$PATH"
