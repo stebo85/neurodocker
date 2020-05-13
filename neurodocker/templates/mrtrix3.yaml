@@ -29,6 +29,9 @@ generic:
       PATH: "{{ mrtrix3.install_path }}/bin:$PATH"
     instructions: |
       {{ mrtrix3.install_dependencies() }}
+      wget http://download.qt.io/official_releases/qt/5.7/5.7.0/qt-opensource-linux-x64-5.7.0.run
+      chmod +x qt-opensource-linux-x64-5.7.0.run \
+      ./qt-opensource-linux-x64-5.7.0.run
       mkdir -p {{ mrtrix3.install_path }}
       git clone https://github.com/MRtrix3/mrtrix3.git {{ mrtrix3.install_path }}
       cd {{ mrtrix3.install_path }}
@@ -37,4 +40,4 @@ generic:
       {% endif -%}
       ./configure
       echo "Compiling MRtrix3 ..."
-      ./build
+      # ./build
