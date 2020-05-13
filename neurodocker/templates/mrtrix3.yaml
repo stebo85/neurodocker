@@ -34,6 +34,6 @@ generic:
       {% if mrtrix3.version != "master" and mrtrix3.version != "latest" -%}
       git checkout {{ mrtrix3.version }}
       {% endif -%}
-      ./configure -nogui
+      ./configure
       echo "Compiling MRtrix3 ..."
       ./build
